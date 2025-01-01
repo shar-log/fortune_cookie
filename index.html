@@ -47,9 +47,9 @@
     </style>
 </head>
 <body>
-    <div class="cookie" id="cookie" onclick="showFortune()">
+    <div class="cookie" onclick="showFortune()">
         <div class="message" id="fortune-message">
-            <span class="click-message" id="click-message">Happy New Year!! I got you fortune cookies, Click to see your fortune</span>
+            <span class="click-message" id="click-message">Happy New Year!! I got you a fortune cookie, Click to see your fortune</span>
         </div>
     </div>
     <script>
@@ -135,12 +135,12 @@
             document.getElementById("click-message").style.display = "none"; // Hide the initial click message
             fortuneRevealed = true;
 
-            // Remove the click event listener to prevent further clicks
-            document.getElementById('cookie').removeEventListener('click', showFortune);
-        }
+            // Disable further clicks by adding a CSS class
+            document.querySelector('.cookie').classList.add('disabled');
 
-        // Add the click event listener to the cookie div
-        document.getElementById('cookie').addEventListener('click', showFortune);
+            // Remove the click event listener to prevent further clicks
+            document.querySelector('.cookie').removeEventListener('click', showFortune);
+        }
     </script>
 </body>
 </html>
