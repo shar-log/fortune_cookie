@@ -44,9 +44,9 @@
     </style>
 </head>
 <body>
-    <div class="cookie" onclick="showFortune()">
+    <div class="cookie" onclick="showFortune(this)">
         <div class="message" id="fortune-message">
-            <span class="click-message" id="click-message">Happy New Year!! I got you a fortune cookie, click here to see your fortune !!</span>
+            <span class="click-message" id="click-message">Happy New Year!! Click to see your fortune</span>
         </div>
     </div>
     <script>
@@ -86,7 +86,7 @@
         ];
 
         const quotes = [
-           "Your dreams are coming true.",
+            "Your dreams are coming true.",
 "Joy is just around the corner.",
 "You are about to embark on a new journey.",
 "Positive changes are on the way.",
@@ -380,41 +380,42 @@
 
         let fortuneRevealed = false;
 
-        function showFortune() {
-            if (!fortuneRevealed) {
-                const isGif = Math.random() < 0.5; // 50% chance to choose between GIF and quote
-                const fortuneMessage = document.getElementById("fortune-message");
-                fortuneMessage.innerHTML = ""; // Clear any existing content
-
-                if (isGif) {
-                    const randomIndex = Math.floor(Math.random() * gifs.length);
-                    const gifUrl = gifs[randomIndex];
-                    const imgElement = document.createElement("img");
-                    imgElement.src = gifUrl;
-                    imgElement.style.maxWidth = "90%"; // Adjust if needed
-                    imgElement.style.maxHeight = "90%"; // Adjust if needed
-                    fortuneMessage.appendChild(imgElement);
-                } else {
-                    const randomIndex = Math.floor(Math.random() * quotes.length);
-                    const quoteText = quotes[randomIndex];
-                    const quoteElement = document.createElement("div");
-                    quoteElement.style.color = "white";
-                    quoteElement.style.fontSize = "40px";
-                    quoteElement.style.textAlign = "center";
-                    quoteElement.style.padding = "20px";
-                    quoteElement.textContent = quoteText;
-                    fortuneMessage.appendChild(quoteElement);
-                }
-
-                fortuneMessage.style.opacity = "1"; // Make the message visible
-                document.getElementById("click-message").style.display = "none"; // Hide the initial click message
-                fortuneRevealed = true;
-                document.querySelector('.cookie').removeEventListener('click', showFortune); // Remove the click event listener to prevent further clicks
+        function showFortune(element) {
+            if (fortuneRevealed) {
+                return;
             }
-        }
 
-        // Add the click event listener to the cookie div
-        document.querySelector('.cookie').addEventListener('click', showFortune);
+            const isGif = Math.random() < 0.5; // 50% chance to choose between GIF and quote
+            const fortuneMessage = document.getElementById("fortune-message");
+            fortuneMessage.innerHTML = ""; // Clear any existing content
+
+            if (isGif) {
+                const randomIndex = Math.floor(Math.random() * gifs.length);
+                const gifUrl = gifs[randomIndex];
+                const imgElement = document.createElement("img");
+                imgElement.src = gifUrl;
+                imgElement.style.maxWidth = "90%"; // Adjust if needed
+                imgElement.style.maxHeight = "90%"; // Adjust if needed
+                fortuneMessage.appendChild(imgElement);
+            } else {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                const quoteText = quotes[randomIndex];
+                const quoteElement = document.createElement("div");
+                quoteElement.style.color = "white";
+                quoteElement.style.fontSize = "40px";
+                quoteElement.style.textAlign = "center";
+                quoteElement.style.padding = "20px";
+                quoteElement.textContent = quoteText;
+                fortuneMessage.appendChild(quoteElement);
+            }
+
+            fortuneMessage.style.opacity = "1"; // Make the message visible
+            document.getElementById("click-message").style.display = "none"; // Hide the initial click message
+            fortuneRevealed = true;
+
+            // Disable further clicks
+            element.onclick = null;
+        }
     </script>
 </body>
 </html>
