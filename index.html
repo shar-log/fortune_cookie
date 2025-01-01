@@ -6,6 +6,7 @@
         .cookie {
             position: relative;
             width: 300px; /* Adjust the width as needed */
+            margin: 0 auto; /* Center the image */
         }
         .message {
             position: absolute;
@@ -56,6 +57,7 @@
                 const randomIndex = Math.floor(Math.random() * fortunes.length);
                 document.getElementById("fortune-message").innerText = fortunes[randomIndex];
                 document.getElementById("instruction").innerText = ""; // Clear the instruction text
+                document.getElementById("fortune-message").style.opacity = "1"; // Make the message visible
                 fortuneRevealed = true;
             }
         }
