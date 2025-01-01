@@ -59,26 +59,54 @@
             "https://media.giphy.com/media/1WqsdG3t7Ww66p4ZnF/giphy.gif"
         ];
 
+        const quotes = [
+            "You will find great success in the near future.",
+            "A pleasant surprise is waiting for you.",
+            "Good news will come to you by mail.",
+            "An exciting opportunity lies ahead.",
+            "Happiness is on your horizon.",
+            "Your hard work will soon pay off.",
+            "Expect a phone call with a good surprise.",
+            "A thrilling time is in your immediate future."
+        ];
+
         let fortuneRevealed = false;
 
         function showFortune() {
             if (!fortuneRevealed) {
-                const randomIndex = Math.floor(Math.random() * gifs.length);
-                const gifUrl = gifs[randomIndex];
-                const imgElement = document.createElement("img");
-                imgElement.src = gifUrl;
-                imgElement.style.maxWidth = "90%"; // Adjust if needed
-                imgElement.style.maxHeight = "90%"; // Adjust if needed
-
+                const isGif = Math.random() < 0.5; // 50% chance to choose between GIF and quote
                 const fortuneMessage = document.getElementById("fortune-message");
                 fortuneMessage.innerHTML = ""; // Clear any existing content
-                fortuneMessage.appendChild(imgElement);
+
+                if (isGif) {
+                    const randomIndex = Math.floor(Math.random() * gifs.length);
+                    const gifUrl = gifs[randomIndex];
+                    const imgElement = document.createElement("img");
+                    imgElement.src = gifUrl;
+                    imgElement.style.maxWidth = "90%"; // Adjust if needed
+                    imgElement.style.maxHeight = "90%"; // Adjust if needed
+                    fortuneMessage.appendChild(imgElement);
+                } else {
+                    const randomIndex = Math.floor(Math.random() * quotes.length);
+                    const quoteText = quotes[randomIndex];
+                    const quoteElement = document.createElement("div");
+                    quoteElement.style.color = "white";
+                    quoteElement.style.fontSize = "40px";
+                    quoteElement.style.textAlign = "center";
+                    quoteElement.style.padding = "20px";
+                    quoteElement.textContent = quoteText;
+                    fortuneMessage.appendChild(quoteElement);
+                }
 
                 fortuneMessage.style.opacity = "1"; // Make the message visible
                 document.getElementById("click-message").style.display = "none"; // Hide the initial click message
                 fortuneRevealed = true;
+                document.querySelector('.cookie').removeEventListener('click', showFortune); // Remove the click event listener to prevent further clicks
             }
         }
+
+        // Add the click event listener to the cookie div
+        document.querySelector('.cookie').addEventListener('click', showFortune);
     </script>
 </body>
 </html>
