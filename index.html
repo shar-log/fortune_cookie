@@ -3,12 +3,15 @@
 <head>
     <title>Sharmi's Fortune Cookie</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap'); /* Importing a cool font */
+
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            font-family: 'Pacifico', cursive; /* Using the imported font */
         }
         .cookie {
             position: relative;
@@ -33,12 +36,18 @@
         .cookie:hover .message {
             opacity: 1;
         }
+        .click-message {
+            color: white;
+            font-size: 40px; /* Larger font size */
+            text-align: center;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="cookie" onclick="showFortune()">
         <div class="message" id="fortune-message">
-            <span id="click-message">Happy New Year!! Click to see your fortune</span>
+            <span class="click-message" id="click-message">Happy New Year!! Click to see your fortune</span>
         </div>
     </div>
     <script>
