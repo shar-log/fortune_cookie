@@ -21,13 +21,14 @@
             background-size: cover;
         }
         .message {
-            background-color: rgba(255, 255, 255, 0.8);
-            color: #000;
-            padding: 20px;
-            font-size: 30px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
             opacity: 0;
             transition: opacity 0.5s;
-            text-align: center;
         }
         .cookie:hover .message {
             opacity: 1;
@@ -36,23 +37,36 @@
 </head>
 <body>
     <div class="cookie" onclick="showFortune()">
-        <div class="message" id="fortune-message">Happy New Year!! Click to see your fortune</div>
+        <div class="message" id="fortune-message">
+            <span id="click-message">Happy New Year!! Click to see your fortune</span>
+        </div>
     </div>
     <script>
-        const fortunes = [ "https://media.giphy.com/media/1xVhm7j5Xj8yQsMvxT/giphy.gif", 
-                          "https://media.giphy.com/media/l41YoWEKJFu2o9Jcc/giphy.gif", 
-                          "https://media.giphy.com/media/3oriO7A7bt1wsEP4cw/giphy.gif", 
-                          "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif", 
-                          "https://media.giphy.com/media/1WqsdG3t7Ww66p4ZnF/giphy.gif"
-                          ];
+        const gifs = [
+            "https://media.giphy.com/media/1xVhm7j5Xj8yQsMvxT/giphy.gif",
+            "https://media.giphy.com/media/l41YoWEKJFu2o9Jcc/giphy.gif",
+            "https://media.giphy.com/media/3oriO7A7bt1wsEP4cw/giphy.gif",
+            "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+            "https://media.giphy.com/media/1WqsdG3t7Ww66p4ZnF/giphy.gif"
+        ];
 
         let fortuneRevealed = false;
 
         function showFortune() {
             if (!fortuneRevealed) {
-                const randomIndex = Math.floor(Math.random() * fortunes.length);
-                document.getElementById("fortune-message").innerText = fortunes[randomIndex];
-                document.getElementById("fortune-message").style.opacity = "1"; // Make the message visible
+                const randomIndex = Math.floor(Math.random() * gifs.length);
+                const gifUrl = gifs[randomIndex];
+                const imgElement = document.createElement("img");
+                imgElement.src = gifUrl;
+                imgElement.style.maxWidth = "90%"; // Adjust if needed
+                imgElement.style.maxHeight = "90%"; // Adjust if needed
+
+                const fortuneMessage = document.getElementById("fortune-message");
+                fortuneMessage.innerHTML = ""; // Clear any existing content
+                fortuneMessage.appendChild(imgElement);
+
+                fortuneMessage.style.opacity = "1"; // Make the message visible
+                document.getElementById("click-message").style.display = "none"; // Hide the initial click message
                 fortuneRevealed = true;
             }
         }
