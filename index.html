@@ -41,48 +41,52 @@
             background-color: rgba(0, 0, 0, 0.5); /* Add a background to improve visibility */
             border-radius: 10px; /* Add rounded corners for better aesthetics */
         }
+        .disabled {
+            pointer-events: none; /* Disable further clicks */
+        }
     </style>
 </head>
 <body>
-    <div class="cookie" onclick="showFortune()">
+    <div class="cookie" id="cookie" onclick="showFortune()">
         <div class="message" id="fortune-message">
-            <span class="click-message" id="click-message">Happy New Year!! Click to see your fortune</span>
+            <span class="click-message" id="click-message">Happy New Year!! I got you fortune cookies, Click to see your fortune</span>
         </div>
     </div>
     <script>
-        const gifs = ["https://media.giphy.com/media/qk8EgSK5tyZhoqUI8J/giphy.gif",
-"https://media.giphy.com/media/6VriQO3GFRwwBVPbi4/giphy.gif",
-"https://media.giphy.com/media/7iDxGUWwYG6ibh7XpX/giphy.gif",
-"https://media.giphy.com/media/0xHMSqhmIoRbkOaBHx/giphy.gif",
-"https://media.giphy.com/media/uAKdMSL1YnqW4U4fhj/giphy.gif",
-"https://media.giphy.com/media/x5uaugInEtWPfANfbC/giphy.gif",
-"https://media.giphy.com/media/LjtVfUsH30EEGvv6tW/giphy.gif",
-"https://media.giphy.com/media/1qE25oynqmxSYXfWmV/giphy.gif",
-"https://media.giphy.com/media/tcvS7X3pFdZS9c4Djt/giphy.gif",
-"https://media.giphy.com/media/yBzdgF3iP3NA6n24FI/giphy.gif",
-"https://media.giphy.com/media/OZbGrdp7FiDiE/giphy.gif",
-"https://media.giphy.com/media/bzuUs1uRLBHWe2aBPK/giphy.gif",
-"https://media.giphy.com/media/kIfth1FLVk3UHzynN7/giphy.gif",
-"https://media.giphy.com/media/HY2YIHIL10X9essvdG/giphy.gif",
-"https://media.giphy.com/media/GTcZmbIvXGCUfgpzCt/giphy.gif",
-"https://media.giphy.com/media/l41K2BWUb5U59EKgU/giphy.gif",
-"https://media.giphy.com/media/26xBSxisb1xYv1dja/giphy.gif",
-"https://media.giphy.com/media/d1E12OY7DjFkEBSU/giphy.gif",
-"https://media.giphy.com/media/l0Iymd27lJHsZVqjS/giphy.gif",
-"https://media.giphy.com/media/l1BgRkTSJlYgCVqHm/giphy.gif",
-"https://media.giphy.com/media/l2SqdrcLUxoMSfc9W/giphy.gif",
-"https://media.giphy.com/media/ZgQkS8r5q82UOswjib/giphy.gif",
-"https://media.giphy.com/media/d1E12OY7DjFkEBSU/giphy.gif",
-"https://media.giphy.com/media/87dGyFXDxr7XvQQwSS/giphy.gif",
-"https://media.giphy.com/media/iiEKbVQJOysUjMEU0K/giphy.gif",
-"https://media.giphy.com/media/8L21cgvkrqS48IRqHV/giphy.gif",
-"https://media.giphy.com/media/D81ZtVnn5Orio/giphy.gif",
-"https://media.giphy.com/media/xT9DPsQBUcmdKjuzE4/giphy.gif",
-"https://media.giphy.com/media/l4FGGGqzAGoYytjck/giphy.gif",
-"https://media.giphy.com/media/ZOw9W7kPA6XeSwCxW3/giphy.gif",
-"https://media.giphy.com/media/WrcP2W2S29bDTYkOyD/giphy.gif",
-"https://media.giphy.com/media/MDcF2bM3ytTwYocEIk/giphy.gif",
-"https://media.giphy.com/media/0W6hUs6hW1o1Djz8ow/giphy.gif"
+        const gifs = [
+            "https://media.giphy.com/media/qk8EgSK5tyZhoqUI8J/giphy.gif",
+            "https://media.giphy.com/media/6VriQO3GFRwwBVPbi4/giphy.gif",
+            "https://media.giphy.com/media/7iDxGUWwYG6ibh7XpX/giphy.gif",
+            "https://media.giphy.com/media/0xHMSqhmIoRbkOaBHx/giphy.gif",
+            "https://media.giphy.com/media/uAKdMSL1YnqW4U4fhj/giphy.gif",
+            "https://media.giphy.com/media/x5uaugInEtWPfANfbC/giphy.gif",
+            "https://media.giphy.com/media/LjtVfUsH30EEGvv6tW/giphy.gif",
+            "https://media.giphy.com/media/1qE25oynqmxSYXfWmV/giphy.gif",
+            "https://media.giphy.com/media/tcvS7X3pFdZS9c4Djt/giphy.gif",
+            "https://media.giphy.com/media/yBzdgF3iP3NA6n24FI/giphy.gif",
+            "https://media.giphy.com/media/OZbGrdp7FiDiE/giphy.gif",
+            "https://media.giphy.com/media/bzuUs1uRLBHWe2aBPK/giphy.gif",
+            "https://media.giphy.com/media/kIfth1FLVk3UHzynN7/giphy.gif",
+            "https://media.giphy.com/media/HY2YIHIL10X9essvdG/giphy.gif",
+            "https://media.giphy.com/media/GTcZmbIvXGCUfgpzCt/giphy.gif",
+            "https://media.giphy.com/media/l41K2BWUb5U59EKgU/giphy.gif",
+            "https://media.giphy.com/media/26xBSxisb1xYv1dja/giphy.gif",
+            "https://media.giphy.com/media/d1E12OY7DjFkEBSU/giphy.gif",
+            "https://media.giphy.com/media/l0Iymd27lJHsZVqjS/giphy.gif",
+            "https://media.giphy.com/media/l1BgRkTSJlYgCVqHm/giphy.gif",
+            "https://media.giphy.com/media/l2SqdrcLUxoMSfc9W/giphy.gif",
+            "https://media.giphy.com/media/ZgQkS8r5q82UOswjib/giphy.gif",
+            "https://media.giphy.com/media/d1E12OY7DjFkEBSU/giphy.gif",
+            "https://media.giphy.com/media/87dGyFXDxr7XvQQwSS/giphy.gif",
+            "https://media.giphy.com/media/iiEKbVQJOysUjMEU0K/giphy.gif",
+            "https://media.giphy.com/media/8L21cgvkrqS48IRqHV/giphy.gif",
+            "https://media.giphy.com/media/D81ZtVnn5Orio/giphy.gif",
+            "https://media.giphy.com/media/xT9DPsQBUcmdKjuzE4/giphy.gif",
+            "https://media.giphy.com/media/l4FGGGqzAGoYytjck/giphy.gif",
+            "https://media.giphy.com/media/ZOw9W7kPA6XeSwCxW3/giphy.gif",
+            "https://media.giphy.com/media/WrcP2W2S29bDTYkOyD/giphy.gif",
+            "https://media.giphy.com/media/MDcF2bM3ytTwYocEIk/giphy.gif",
+            "https://media.giphy.com/media/0W6hUs6hW1o1Djz8ow/giphy.gif"
         ];
 
         const quotes = [
@@ -131,17 +135,12 @@
             document.getElementById("click-message").style.display = "none"; // Hide the initial click message
             fortuneRevealed = true;
 
-            // Disable the cookie div after first click
-            document.querySelector('.cookie').classList.add('disabled');
+            // Remove the click event listener to prevent further clicks
+            document.getElementById('cookie').removeEventListener('click', showFortune);
         }
 
         // Add the click event listener to the cookie div
-        document.querySelector('.cookie').addEventListener('click', showFortune);
+        document.getElementById('cookie').addEventListener('click', showFortune);
     </script>
-    <style>
-        .cookie.disabled {
-            pointer-events: none;
-        }
-    </style>
 </body>
 </html>
