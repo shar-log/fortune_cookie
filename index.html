@@ -19,17 +19,24 @@
             font-size: 24px;
             opacity: 0;
             transition: opacity 0.5s;
+            pointer-events: none; /* Prevent message from blocking clicks */
         }
         .cookie:hover .message {
             opacity: 1;
+        }
+        .instruction {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
     <div class="cookie" onclick="showFortune()">
         <img src="your-fortune-cookie-image1.jpg" alt="Fortune Cookie">
-        <div class="message" id="fortune-message">Click to see your fortune</div>
+        <div class="message" id="fortune-message"></div>
     </div>
+    <div class="instruction" id="instruction">Click to see your fortune</div>
     <script>
         const fortunes = [
             "You will find great success in the near future.",
@@ -42,9 +49,15 @@
             "A thrilling time is in your immediate future."
         ];
 
+        let fortuneRevealed = false;
+
         function showFortune() {
-            const randomIndex = Math.floor(Math.random() * fortunes.length);
-            document.getElementById("fortune-message").innerText = fortunes[randomIndex];
+            if (!fortuneRevealed) {
+                const randomIndex = Math.floor(Math.random() * fortunes.length);
+                document.getElementById("fortune-message").innerText = fortunes[randomIndex];
+                document.getElementById("instruction").innerText = ""; // Clear the instruction text
+                fortuneRevealed = true;
+            }
         }
     </script>
 </body>
