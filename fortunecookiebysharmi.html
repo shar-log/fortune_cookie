@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Random Fortune Cookie</title>
+    <style>
+        .cookie {
+            position: relative;
+            width: 300px; /* Adjust the width as needed */
+        }
+        .message {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .cookie:hover .message {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="cookie" onclick="showFortune()">
+        <img src="C:\Users\sharm\Downloads\your-fortune-cookie-image1.jpg" alt="Fortune Cookie">
+        <div class="message" id="fortune-message">Click to see your fortune</div>
+    </div>
+    <script>
+        const fortunes = [
+            "You will find great success in the near future.",
+            "A pleasant surprise is waiting for you.",
+            "Good news will come to you by mail.",
+            "An exciting opportunity lies ahead.",
+            "Happiness is on your horizon.",
+            "Your hard work will soon pay off.",
+            "Expect a phone call with a good surprise.",
+            "A thrilling time is in your immediate future."
+        ];
+
+        function showFortune() {
+            const randomIndex = Math.floor(Math.random() * fortunes.length);
+            document.getElementById("fortune-message").innerText = fortunes[randomIndex];
+        }
+    </script>
+</body>
+</html>
