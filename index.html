@@ -47,9 +47,9 @@
     </style>
 </head>
 <body>
-    <div class="cookie" onclick="showFortune()">
+    <div class="cookie" id="cookie">
         <div class="message" id="fortune-message">
-            <span class="click-message" id="click-message">Happy New Year!! I got you a fortune cookie, Click to see your fortune</span>
+            <span class="click-message" id="click-message">Happy New Year!! I got u a fortune cookie,Click here see your fortune</span>
         </div>
     </div>
     <script>
@@ -103,9 +103,7 @@
         let fortuneRevealed = false;
 
         function showFortune() {
-            if (fortuneRevealed) {
-                return;
-            }
+            if (fortuneRevealed) return;
 
             const isGif = Math.random() < 0.5; // 50% chance to choose between GIF and quote
             const fortuneMessage = document.getElementById("fortune-message");
@@ -136,11 +134,11 @@
             fortuneRevealed = true;
 
             // Disable further clicks by adding a CSS class
-            document.querySelector('.cookie').classList.add('disabled');
-
-            // Remove the click event listener to prevent further clicks
-            document.querySelector('.cookie').removeEventListener('click', showFortune);
+            document.getElementById('cookie').classList.add('disabled');
         }
+
+        // Add the click event listener to the cookie div
+        document.getElementById('cookie').addEventListener('click', showFortune);
     </script>
 </body>
 </html>
