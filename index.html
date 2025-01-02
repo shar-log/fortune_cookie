@@ -47,9 +47,9 @@
     </style>
 </head>
 <body>
-    <div class="cookie" id="cookie" onclick="showFortune()">
+    <div class="cookie" id="cookie">
         <div class="message" id="fortune-message">
-            <span class="click-message" id="click-message">Happy New Year!! I got you fortune cookie, Click here to see your fortune</span>
+            <span class="click-message" id="click-message">Happy New Year!! I got you fortune cookies, Click here to see your fortune</span>
         </div>
     </div>
     <script>
@@ -100,7 +100,7 @@
         let fortuneRevealed = false;
 
         function showFortune() {
-            if (fortuneRevealed) return;
+            if (fortuneRevealed) return; // Ensure only one fortune is shown
 
             const isGif = Math.random() < 0.5; // 50% chance to choose between GIF and quote
             const fortuneMessage = document.getElementById("fortune-message");
